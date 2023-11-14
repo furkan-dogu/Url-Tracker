@@ -21,19 +21,38 @@ tabBtn.addEventListener("click", function () {
   });
 });
 
+// function render(leads) {
+//   let listItems = "";
+
+//   for (let i = 0; i < leads.length; i++) {
+//     listItems += `
+//         <li>
+//         <a target='_blank' href="${leads[i]}">
+//         ${leads[i]}
+//         </a>
+//         </li> 
+//     `;
+// }
+//   ulEl.innerHTML = listItems;
+
+// }
+
 function render(leads) {
-  let listItems = "";
+
+  while (ulEl.firstChild) {
+    ulEl.removeChild(ulEl.firstChild);
+  }
 
   for (let i = 0; i < leads.length; i++) {
-    listItems += `
-        <li>
-        <a target='_blank' href="${leads[i]}">
-        ${leads[i]}
-        </a>
-        </li> 
-    `;
-}
-  ulEl.innerHTML = listItems;
+    
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.target = "_blank"
+    a.href = leads[i]
+    a.textContent = leads[i]
+    li.appendChild(a);
+    ulEl.appendChild(li);
+  }
 }
 
 deleteBtn.addEventListener("dblclick", function () {
